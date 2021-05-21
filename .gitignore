@@ -1,0 +1,13 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+
+
+###JetBrains Template
+# Covers JetBrains IDEs
+
+*.iml
+
+##Directory based project formatt
+
+*.idea/
