@@ -1,10 +1,14 @@
 package com.qa.base;
 
+import com.qa.constants.ConfigConstants;
+import com.qa.io.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
 import java.lang.reflect.Method;
+import java.util.Properties;
+import java.util.logging.Logger;
 
 /**
  * @author Birender Kumar
@@ -12,6 +16,8 @@ import java.lang.reflect.Method;
  * Every test class must implement this class.
  */
 public class BaseClass {
+
+    public static final Logger logger = Logger.getLogger(BaseClass.class.getName());
     public static WebDriver driver;
 
     /**
@@ -20,6 +26,10 @@ public class BaseClass {
      */
     @BeforeSuite
     public void setup(){
+        logger.info("Inside setup.");
+        DriverManager driverManager = new DriverManager();
+        Properties prop = ConfigReader.readBaseConfig();
+        driver = driverManager.getDriver(prop.getProperty(ConfigConstants.ApplicationConstants.BROWSER));
 
     }
 
@@ -30,6 +40,11 @@ public class BaseClass {
      */
     @BeforeClass
     public void beforeClass(){
+        logger.info("Login to the application.");
+        //Login login = new Login(driver);
+        //login.loginToApp();
+        //HomePage homePage = new HomePage(driver);
+        //homePage.displayPage();
 
     }
 
