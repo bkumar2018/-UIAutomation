@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class HomePageObject {
 
     /**
@@ -17,6 +19,10 @@ public class HomePageObject {
 
     @FindBy (xpath = "//img[@class='logo-xs' and @alt='Aadhaar']")
     public WebElement logoAadhaar;
+
+    @FindBy(xpath="//ul[@class='megamenu level0']/li/a/span")
+    public List<WebElement> list_we_megamenu;
+
 
 
 }

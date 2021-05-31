@@ -1,4 +1,4 @@
-package com.qa.testcases;
+package com.qa.testcases.home;
 
 import com.qa.base.BaseClass;
 import com.qa.scripts.HomePage;
@@ -15,4 +15,5 @@ public class HomePageTest extends BaseClass {
         HomePage homePage = new HomePage(driver);
         homePage.verifyAadhaarLogo();
     }
+
 }
