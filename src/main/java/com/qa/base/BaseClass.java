@@ -1,11 +1,16 @@
 package com.qa.base;
 
 import com.qa.constants.ConfigConstants;
+import com.qa.constants.FileConstants;
 import com.qa.io.ConfigReader;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import java.io.File;
 import java.lang.reflect.Method;
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -19,6 +24,8 @@ public class BaseClass {
 
     public static final Logger logger = Logger.getLogger(BaseClass.class.getName());
     public static WebDriver driver;
+    public static ExtentReports extent;
+    public static ExtentTest extentTest;
 
     /**
      * This will get execute before suite start.
@@ -30,6 +37,8 @@ public class BaseClass {
         DriverManager driverManager = new DriverManager();
         Properties prop = ConfigReader.readBaseConfig();
         driver = driverManager.getDriver(prop.getProperty(ConfigConstants.ApplicationConstants.BROWSER));
+        extent = new ExtentReports(FileConstants.getExtentReport(),true);
+        extent.loadConfig(new File(FileConstants.getExtentConfig()));
 
     }
 
@@ -55,7 +64,7 @@ public class BaseClass {
      */
     @BeforeMethod
     public void setupBeforeMethod(Method method){
-
+        //extentTest.log(LogStatus.INFO, "Login to the application.");
     }
 
     /**
@@ -69,6 +78,10 @@ public class BaseClass {
     @AfterMethod
     public void afterMethod(ITestResult result, Method method){
 
+        extentTest.log(LogStatus.INFO, "Inside afterMethod");
+        // Code to add extentTest result in report
+        extent.endTest(extentTest);
+        extent.flush();
     }
 
     /**
@@ -77,6 +90,7 @@ public class BaseClass {
      */
     @AfterClass
     public void afterClass(){
+
 
     }
 

@@ -12,6 +12,9 @@ public class HomePageTest extends BaseClass {
 
     @Test(description = "verify Aadhaar logo")
     public void verifyAadhaarLogo(){
+        extentTest = extent.startTest("verifyAadhaarLogo","verify Aadhaar logo");
+        extentTest.assignCategory("Aadhaar");
+
         HomePage homePage = new HomePage(driver);
         homePage.verifyAadhaarLogo();
     }

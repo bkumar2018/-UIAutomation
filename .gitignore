@@ -11,3 +11,6 @@
 ##Directory based project formatt
 
 *.idea/
+
+## Reports html
+*.html

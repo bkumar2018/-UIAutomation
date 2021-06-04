@@ -1,7 +1,5 @@
 package com.qa.constants;
 
-import com.sun.org.apache.bcel.internal.generic.IFLE;
-
 import java.io.File;
 
 public class DirectoryConstants {
@@ -12,6 +10,8 @@ public class DirectoryConstants {
     public static String COM = "com";
     public static String QA = "qa";
     public static String CONFIG = "config";
+    public static final String RESULT = "result";
+    public static final String EXTENT = "extent";
 
     public static String getUserDir(){
         return  System.getProperty("user.dir");
@@ -22,5 +22,8 @@ public class DirectoryConstants {
                 + COM + File.separator + QA + File.separator + CONFIG + File.separator;
     }
 
+    public static String getExtentResultsDir(){
+        return getUserDir() + File.separator + RESULT + File.separator + EXTENT + File.separator;
+    }
 
 }
