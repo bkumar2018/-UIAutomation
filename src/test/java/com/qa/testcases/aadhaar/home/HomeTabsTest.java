@@ -1,7 +1,7 @@
-package com.qa.testcases.home;
+package com.qa.testcases.aadhaar.home;
 
 import com.qa.base.BaseClass;
-import com.qa.scripts.HomePage;
+import com.qa.scripts.aadhaar.HomePage;
 import org.testng.annotations.Test;
 
 import java.util.logging.Logger;

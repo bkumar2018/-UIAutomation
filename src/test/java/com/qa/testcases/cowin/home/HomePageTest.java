@@ -1,7 +1,7 @@
-package com.qa.testcases.home;
+package com.qa.testcases.cowin.home;
 
 import com.qa.base.BaseClass;
-import com.qa.scripts.HomePage;
+import com.qa.scripts.cowin.HomePage;
 import org.testng.annotations.Test;
 
 import java.util.logging.Logger;
@@ -13,7 +13,7 @@ public class HomePageTest extends BaseClass {
     @Test(description = "verify Aadhaar logo")
     public void verifyAadhaarLogo(){
         HomePage homePage = new HomePage(driver);
-        homePage.verifyAadhaarLogo();
+        homePage.verifyGovMoHFWText();
     }
 
 }

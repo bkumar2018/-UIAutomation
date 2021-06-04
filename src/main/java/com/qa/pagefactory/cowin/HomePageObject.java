@@ -1,4 +1,4 @@
-package com.qa.pagefactory;
+package com.qa.pagefactory.cowin;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,11 +17,11 @@ public class HomePageObject {
     }
 
 
-    @FindBy (xpath = "//img[@class='logo-xs' and @alt='Aadhaar']")
-    public WebElement logoAadhaar;
+    @FindBy (xpath = "//div[@class='govindia']/span[2]/a")
+    public WebElement govindia_text;
 
-    @FindBy(xpath="//ul[@class='megamenu level0']/li/a/span")
-    public List<WebElement> list_we_megamenu;
+    @FindBy(xpath="//ul[@class='topnavlinks']//li/a")
+    public List<WebElement> list_we_toptabs;
 
 
 

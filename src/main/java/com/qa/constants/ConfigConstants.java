@@ -4,7 +4,8 @@ public class ConfigConstants {
 
     public static class ApplicationConstants{
         public static String URL = "url";
-        public static String BROWSER = "browser";
+        public static String BROWSER = "BrowserType";
+        public static String TESTENVIRONMENT = "TestEnvironment";
         public static String USERNAME = "username";
         public static String PASSWORD = "password";
     }

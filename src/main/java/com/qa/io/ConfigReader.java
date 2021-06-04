@@ -37,4 +37,8 @@ public class ConfigReader {
     public static Properties readBaseConfig(){
         return readConfig(FileConstants.getConfigFile());
     }
+
+    public static Properties readAadhaarConfig(){
+        return readConfig(FileConstants.getAadhaarConfigFile());
+    }
 }

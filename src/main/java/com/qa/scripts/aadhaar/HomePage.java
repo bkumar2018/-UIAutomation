@@ -1,16 +1,13 @@
-package com.qa.scripts;
+package com.qa.scripts.aadhaar;
 
 import com.qa.constants.HomePageConstants;
-import com.qa.pagefactory.HomePageObject;
+import com.qa.pagefactory.aadhaar.HomePageObject;
 import com.qa.utils.WaitExecuter;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.logging.Logger;
 
 /**

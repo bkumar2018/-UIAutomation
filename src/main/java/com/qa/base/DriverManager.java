@@ -1,6 +1,7 @@
 package com.qa.base;
 
 import com.qa.constants.ConfigConstants;
+import com.qa.constants.DirectoryConstants;
 import com.qa.io.ConfigReader;
 import com.qa.utils.BrowserUtils;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -44,20 +45,26 @@ public class DriverManager {
      * @return driver - WebDriver
      */
     public WebDriver initializeDriver(String browser){
+        String test_env = ConfigReader.readBaseConfig().getProperty(ConfigConstants.ApplicationConstants.TESTENVIRONMENT);
+        String url = ConfigReader.readConfig(DirectoryConstants.getConfigDir()+test_env+".properties")
+                .getProperty(ConfigConstants.ApplicationConstants.URL);
+        System.out.print("Testing Environment url : "+url);
         if(browser.equalsIgnoreCase("chrome")){
             logger.info("Using chrome browser.");
             driver = new ChromeDriver(getChromeOptionsWithNetworkEnable());
             driver.manage().window().maximize();
 
             driver.manage().timeouts().implicitlyWait(BrowserUtils.IMPLICT_WAIT, TimeUnit.SECONDS);
-            driver.get(ConfigReader.readBaseConfig().getProperty(ConfigConstants.ApplicationConstants.URL));
+            //driver.get(ConfigReader.readBaseConfig().getProperty(ConfigConstants.ApplicationConstants.URL));
+            driver.get(url);
         }else if(browser.equalsIgnoreCase("Firefox")){
             logger.info("Using Firefox browser.");
             driver = new FirefoxDriver();
             driver.manage().window().maximize();
 
             driver.manage().timeouts().implicitlyWait(BrowserUtils.IMPLICT_WAIT, TimeUnit.SECONDS);
-            driver.get(ConfigConstants.ApplicationConstants.URL);
+            //driver.get(ConfigConstants.ApplicationConstants.URL);
+            driver.get(url);
         }else{
             System.out.println("Application does not support for "+ browser + " browser.");
             logger.info("Application does not support for "+ browser + " browser.");
