@@ -12,6 +12,7 @@ public class DirectoryConstants {
     public static String CONFIG = "config";
     public static final String RESULT = "result";
     public static final String EXTENT = "extent";
+    public static final String TESTDATA = "TestData";
 
     public static String getUserDir(){
         return  System.getProperty("user.dir");
@@ -24,6 +25,11 @@ public class DirectoryConstants {
 
     public static String getExtentResultsDir(){
         return getUserDir() + File.separator + RESULT + File.separator + EXTENT + File.separator;
+    }
+
+    public static String getTestDataDir(){
+        return getUserDir() + File.separator + TESTDATA + File.separator;
+
     }
 
 }

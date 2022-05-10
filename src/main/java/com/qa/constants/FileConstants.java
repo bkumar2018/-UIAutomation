@@ -6,6 +6,7 @@ public class FileConstants {
     public static String AADHAAR_CONFIG_PROPERTIES = "aadhaar.properties";
     public static String EXTENT_CONFIG = "extent_config.xml";
     public static String EXTENT_REPORT = "extentReport.html";
+    public static String TESTXLSDATA = "testXlsData.xls";
 
 
     public static String getConfigFile(){
@@ -21,6 +22,10 @@ public class FileConstants {
     }
     public static String getExtentReport(){
         return DirectoryConstants.getExtentResultsDir() + EXTENT_REPORT;
+    }
+
+    public static String getTestXlsDataFile(){
+        return DirectoryConstants.getTestDataDir()+ TESTXLSDATA;
     }
 
 }
