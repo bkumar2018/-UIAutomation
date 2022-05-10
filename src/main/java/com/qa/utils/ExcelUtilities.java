@@ -1,13 +1,18 @@
 package com.qa.utils;
 
 import com.qa.constants.FileConstants;
+import com.qa.utils.dynamicParams.DataFactory;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import org.testng.Reporter;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.nio.Buffer;
+import java.util.Arrays;
 
 public class ExcelUtilities {
 
@@ -30,11 +35,17 @@ public class ExcelUtilities {
             final Cell tableEnd = sheet.findCell(tableName,startCol+1,startRow+1, 100,64000,false);
             endRow = tableEnd.getRow();
             endCol = tableEnd.getColumn();
-            tabArray = new String[endRow -startRow][endCol-startCol-1];
-            ci=0;
+            tabArray = new String[endRow - startRow][endCol - startCol - 1];
+            ci = 0;
+            for(int i= startRow + 1; i <= endRow ; ++i, ++ci){
+                cj =0;
+                for(int j = startCol + 1; j < endCol ; j++, cj++){
+                    tabArray[ci][cj] = DataFactory.getData(sheet.getCell(j, i).getContents().trim()).toString();
+                }
+            }
+            workbook.close();
 
-
-        }catch (Exception e){
+        }catch (final Exception e){
             System.out.println("Table not found. Verify the start tag in the sheet :"+ tableName);
             System.out.println(e);
         }
@@ -42,4 +53,38 @@ public class ExcelUtilities {
         return tabArray;
     }
 
+
+    public String getCellValueFromCSV(String file, String columnName) throws Exception {
+        String colValues = "";
+
+        try{
+            @SuppressWarnings("resource")
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+            String line = "0";
+            int count = 0;
+            int advIndex = 0;
+            while((line = bufferedReader.readLine()) != null){
+                String[] cols = line.split(",");
+                if(count == 0){
+                    advIndex = Arrays.asList(cols).indexOf(columnName);
+                    if(advIndex < 0){
+                        columnName = "\"" + columnName + "\"";
+                        advIndex = Arrays.asList(cols).indexOf(columnName);
+                    }
+                }else{
+                    if(advIndex != -1){
+                        colValues = colValues.concat(cols[advIndex]).concat(";");
+                    }
+                }
+                count++;
+            }
+            Reporter.log("Column Name: "+ columnName);
+            Reporter.log("Column Value: "+ colValues);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return colValues;
+    }
 }
